@@ -18,7 +18,7 @@ class Queue
 	}
 
 	/**
-	 * Adds an element on the collection top.
+	 * Adds an element at the front of the queue.
 	 * @param mixed $item
 	 */
 	public function enqueue($item)
@@ -27,7 +27,7 @@ class Queue
 	}
 
 	/**
-	 * If queue is not empty, removes the element that was last added.
+	 * If queue is not empty, removes the element that was first added.
 	 */
 	public function dequeue()
 	{
