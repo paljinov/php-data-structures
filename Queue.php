@@ -62,10 +62,10 @@ class Queue
 $queue = new Queue();
 
 $queue->enqueue('A');		echo (string)$queue; // A
-$queue->dequeue();		echo (string)$queue; // Queue is empty.
-$queue->dequeue();		echo (string)$queue; // Queue is empty.
+$queue->dequeue();			echo (string)$queue; // Queue is empty.
+$queue->dequeue();			echo (string)$queue; // Queue is empty.
 $queue->enqueue('B');		echo (string)$queue; // B
 $queue->enqueue('C');		echo (string)$queue; // B, C
 $queue->enqueue('D');		echo (string)$queue; // B, C, D
-$queue->dequeue();		echo (string)$queue; // C, D
-$queue->dequeue();		echo (string)$queue; // D
+$queue->dequeue();			echo (string)$queue; // C, D
+$queue->dequeue();			echo (string)$queue; // D
