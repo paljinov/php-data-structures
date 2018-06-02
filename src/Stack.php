@@ -1,62 +1,67 @@
 <?php
 
+require __DIR__.'/../vendor/autoload.php';
+
 /**
  * Implementation of stack data structure - LIFO (last in, first out).
  * Wiki: https://en.wikipedia.org/wiki/Stack_%28abstract_data_type%29
  */
 class Stack
 {
-	/**
-	 * Stack items collection.
-	 * @param mixed[]
-	 */
-	private $items;
+    /**
+     * Stack items collection.
+     *
+     * @var mixed[]
+     */
+    private $items;
 
-	public function __construct()
-	{
-		$this->items = array();
-	}
+    public function __construct()
+    {
+        $this->items = [];
+    }
 
-	/**
-	 * Adds an element on the collection top.
-	 * @param mixed $item
-	 */
-	public function push($item)
-	{
-		$this->items[] = $item;
-	}
+    /**
+     * Adds an element on the collection top.
+     *
+     * @param mixed $item
+     */
+    public function push($item)
+    {
+        $this->items[] = $item;
+    }
 
-	/**
-	 * If stack is not empty, removes the element that was last added.
-	 */
-	public function pop()
-	{
-		if(!$this->isEmpty())
-			array_pop($this->items);
-	}
+    /**
+     * If stack is not empty, removes the element that was last added.
+     */
+    public function pop()
+    {
+        if (!$this->isEmpty()) {
+            array_pop($this->items);
+        }
+    }
 
-	/**
-	 * Checks if stack is empty.
-	 */
-	private function isEmpty()
-	{
-		return count($this->items) ? false : true;
-	}
+    /**
+     * Checks if stack is empty.
+     */
+    private function isEmpty()
+    {
+        return count($this->items) ? false : true;
+    }
 
-	/**
-	 * Converts stack collection to string output.
-	 */
-	public function __toString()
-	{
-		if($this->isEmpty())
-			$itemsString = 'Stack is empty.';
-		else
-			$itemsString = implode(', ', $this->items);
+    /**
+     * Converts stack collection to string output.
+     */
+    public function __toString()
+    {
+        if ($this->isEmpty()) {
+            $itemsString = 'Stack is empty.';
+        } else {
+            $itemsString = implode(', ', $this->items);
+        }
 
-		$itemsString .= PHP_EOL; 
-		return $itemsString;
-	}
-
+        $itemsString .= PHP_EOL;
+        return $itemsString;
+    }
 }
 
 $stack = new Stack();
