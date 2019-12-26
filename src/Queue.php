@@ -1,9 +1,11 @@
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+namespace App;
+
+use RuntimeException;
 
 /**
- * Implementation of queue data structure - FIFO (first in ifirst out).
+ * Implementation of queue data structure - FIFO (first in, first out).
  * Wiki: https://en.wikipedia.org/wiki/Queue_%28abstract_data_type%29
  */
 class Queue
@@ -11,7 +13,7 @@ class Queue
     /**
      * Queue items collection.
      *
-     * @var mixed[]
+     * @var string[]
      */
     private $items;
 
@@ -21,56 +23,52 @@ class Queue
     }
 
     /**
-     * Adds an element at the front of the queue.
+     * Removes and returns the item at the front of the queue.
+     * 
+     * @throws RuntimeException If queue is empty
      *
-     * @param mixed $item
+     * @return string
      */
-    public function enqueue($item)
+    public function dequeue(): string
+    {
+        if ($this->isEmpty()) {
+            throw new RuntimeException('Queue is empty.');
+        }
+
+        $frontItem = array_shift($this->items);
+
+        return $frontItem;
+    }
+
+    /**
+     * Inserts the item at the back of the queue.
+     *
+     * @param string $item
+     * 
+     * @return void
+     */
+    public function enqueue(string $item): void
     {
         $this->items[] = $item;
     }
 
     /**
-     * If queue is not empty, removes the element that was first added.
-     */
-    public function dequeue()
-    {
-        if (!$this->isEmpty()) {
-            array_shift($this->items);
-        }
-    }
-
-    /**
      * Checks if queue is empty.
+     * 
+     * @return boolean
      */
-    private function isEmpty()
+    public function isEmpty(): bool
     {
         return count($this->items) ? false : true;
     }
 
     /**
-     * Converts queue collection to string output.
+     * Returns the item at the front of the queue without removing it.
+     * 
+     * @return string
      */
-    public function __toString()
+    public function peek(): string
     {
-        if ($this->isEmpty()) {
-            $itemsString = 'Queue is empty.';
-        } else {
-            $itemsString = implode(', ', $this->items);
-        }
-
-        $itemsString .= PHP_EOL;
-        return $itemsString;
+        return $this->items[0];
     }
 }
-
-$queue = new Queue();
-
-$queue->enqueue('A');		echo (string)$queue; // A
-$queue->dequeue();			echo (string)$queue; // Queue is empty.
-$queue->dequeue();			echo (string)$queue; // Queue is empty.
-$queue->enqueue('B');		echo (string)$queue; // B
-$queue->enqueue('C');		echo (string)$queue; // B, C
-$queue->enqueue('D');		echo (string)$queue; // B, C, D
-$queue->dequeue();			echo (string)$queue; // C, D
-$queue->dequeue();			echo (string)$queue; // D

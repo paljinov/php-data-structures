@@ -23,17 +23,6 @@ class Stack
     }
 
     /**
-     * Converts stack collection to string output.
-     */
-    public function __toString(): string
-    {
-        $itemsString = implode(', ', $this->items);
-        $toString = sprintf('Stack: "%s"', $itemsString);
-
-        return $toString;
-    }
-
-    /**
      * Checks if stack is empty.
      *
      * @return boolean
@@ -44,7 +33,7 @@ class Stack
     }
 
     /**
-     * Returns the object at the top of the stack without removing it.
+     * Returns the item at the top of the stack without removing it.
      * 
      * @return string
      */
@@ -55,7 +44,7 @@ class Stack
     }
 
     /**
-     * Removes and returns the object at the top of the stack.
+     * Removes and returns the item at the top of the stack.
      * 
      * @throws RuntimeException If stack is empty
      * 
@@ -76,7 +65,7 @@ class Stack
     }
 
     /**
-     * Inserts an object at the top of the stack.
+     * Inserts the item at the top of the stack.
      *
      * @param string $item
      * 
