@@ -1,17 +1,19 @@
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+namespace App;
+
+use RuntimeException;
 
 /**
  * Implementation of stack data structure - LIFO (last in, first out).
- * Wiki: https://en.wikipedia.org/wiki/Stack_%28abstract_data_type%29
+ * Wiki: https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
  */
 class Stack
 {
     /**
      * Stack items collection.
      *
-     * @var mixed[]
+     * @var string[]
      */
     private $items;
 
@@ -21,56 +23,67 @@ class Stack
     }
 
     /**
-     * Adds an element on the collection top.
-     *
-     * @param mixed $item
+     * Converts stack collection to string output.
      */
-    public function push($item)
+    public function __toString(): string
     {
-        $this->items[] = $item;
-    }
+        $itemsString = implode(', ', $this->items);
+        $toString = sprintf('Stack: "%s"', $itemsString);
 
-    /**
-     * If stack is not empty, removes the element that was last added.
-     */
-    public function pop()
-    {
-        if (!$this->isEmpty()) {
-            array_pop($this->items);
-        }
+        return $toString;
     }
 
     /**
      * Checks if stack is empty.
+     *
+     * @return boolean
      */
-    private function isEmpty()
+    public function isEmpty(): bool
     {
-        return count($this->items) ? false : true;
+        return !count($this->items);
     }
 
     /**
-     * Converts stack collection to string output.
+     * Returns the object at the top of the stack without removing it.
+     * 
+     * @return string
      */
-    public function __toString()
+    public function peek(): string
+    {
+        $lastIndex = count($this->items) - 1;
+        return $this->items[$lastIndex];
+    }
+
+    /**
+     * Removes and returns the object at the top of the stack.
+     * 
+     * @throws RuntimeException If stack is empty
+     * 
+     * @return string
+     */
+    public function pop(): string
     {
         if ($this->isEmpty()) {
-            $itemsString = 'Stack is empty.';
-        } else {
-            $itemsString = implode(', ', $this->items);
+            throw new RuntimeException('Stack is empty.');
         }
 
-        $itemsString .= PHP_EOL;
-        return $itemsString;
+        $lastIndex = count($this->items) - 1;
+
+        $item = $this->items[$lastIndex];
+        unset($this->items[$lastIndex]);
+
+        return $item;
+    }
+
+    /**
+     * Inserts an object at the top of the stack.
+     *
+     * @param string $item
+     * 
+     * @return void
+     */
+    public function push(string $item): void
+    {
+        $this->items[] = $item;
     }
 }
-
-$stack = new Stack();
-
-$stack->push('A');		echo (string)$stack; // A
-$stack->pop();			echo (string)$stack; // Stack is empty.
-$stack->pop();			echo (string)$stack; // Stack is empty.
-$stack->push('B');		echo (string)$stack; // B
-$stack->push('C');		echo (string)$stack; // B, C
-$stack->push('D');		echo (string)$stack; // B, C, D
-$stack->pop();			echo (string)$stack; // B, C
-$stack->pop();			echo (string)$stack; // B
