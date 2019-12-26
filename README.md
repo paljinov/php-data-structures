@@ -1,10 +1,8 @@
-php-data-structures
-============
+# php-data-structures
 
 Implementation of well-known data structures in PHP.
 
-Contribution
-============
+# Contribution
 Feel free to fork this repository and solve something in better, i.e. more optimal way.
 
 **php-data-structures** is dockerized for everyone who prefers to debug in the browser instead of in the console.
@@ -26,8 +24,18 @@ http://localhost/src/Stack.php
 docker exec -it php-data-structures_app_1 /bin/bash
 ```
 
-Copyright and License
-============
+# Test data structures
 
-Copyright (c) 2015 - 2018 Pave Aljinović  
+PHPUnit is used for testing implemented data structures:
+- https://phpunit.de/
+- https://phpunit.readthedocs.io/
+
+Tests can be run using command:
+```sh
+./vendor/bin/phpunit tests/
+```
+
+# Copyright and License
+
+Copyright (c) 2015 - 2019 Pave Aljinović  
 Licensed under the [MIT License](https://github.com/paljinov/php-data-structures/blob/master/LICENSE.md)
