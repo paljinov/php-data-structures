@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests;
+namespace Tests\Stack;
 
-use App\Stack;
+use App\Stack\Stack;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 

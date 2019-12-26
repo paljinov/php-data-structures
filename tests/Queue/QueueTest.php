@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests;
+namespace Tests\Queue;
 
-use App\Queue;
+use App\Queue\Queue;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
