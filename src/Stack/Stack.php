@@ -34,7 +34,7 @@ class Stack
 
     /**
      * Returns the item at the top of the stack without removing it.
-     * 
+     *
      * @return string
      */
     public function peek(): string
@@ -45,9 +45,9 @@ class Stack
 
     /**
      * Removes and returns the item at the top of the stack.
-     * 
+     *
      * @throws RuntimeException If stack is empty
-     * 
+     *
      * @return string
      */
     public function pop(): string
@@ -68,7 +68,7 @@ class Stack
      * Inserts the item at the top of the stack.
      *
      * @param string $item
-     * 
+     *
      * @return void
      */
     public function push(string $item): void
