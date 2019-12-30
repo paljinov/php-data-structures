@@ -22,6 +22,11 @@ class Stack
         $this->items = [];
     }
 
+    public function __toString()
+    {
+        return implode(',', $this->items);
+    }
+
     /**
      * Checks if stack is empty.
      *
