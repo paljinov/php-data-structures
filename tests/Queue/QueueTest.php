@@ -21,9 +21,11 @@ class QueueTest extends TestCase
      */
     public function testEnqueue(Queue $queue): Queue
     {
-        $queue->enqueue('A');
-        $this->assertSame('A', $queue->peek());
+        $queue->enqueue('1');
         $this->assertFalse($queue->isEmpty());
+
+        $queue->enqueue('2');
+        $this->assertEquals(['1', '2'], $this->getQueueData($queue));
 
         return $queue;
     }
@@ -33,8 +35,8 @@ class QueueTest extends TestCase
      */
     public function testPeek(Queue $queue): Queue
     {
-        $this->assertSame('A', $queue->peek());
-        $this->assertFalse($queue->isEmpty());
+        $this->assertEquals('1', $queue->peek());
+        $this->assertEquals(['1', '2'], $this->getQueueData($queue));
 
         return $queue;
     }
@@ -44,7 +46,10 @@ class QueueTest extends TestCase
      */
     public function testDequeue(Queue $queue): Queue
     {
-        $this->assertSame('A', $queue->dequeue());
+        $this->assertEquals('1', $queue->dequeue());
+        $this->assertEquals(['2'], $this->getQueueData($queue));
+
+        $this->assertEquals('2', $queue->dequeue());
         $this->assertTrue($queue->isEmpty());
 
         return $queue;
@@ -57,5 +62,18 @@ class QueueTest extends TestCase
     {
         $this->expectException(RuntimeException::class);
         $queue->dequeue();
+    }
+
+    /**
+     * Get queue array data.
+     *
+     * @param Queue $queue
+     *
+     * @return string[]
+     */
+    private function getQueueData(Queue $queue): array
+    {
+        $queueData = explode(',', (string) $queue);
+        return $queueData;
     }
 }

@@ -22,9 +22,14 @@ class Queue
         $this->items = [];
     }
 
+    public function __toString()
+    {
+        return implode(',', $this->items);
+    }
+
     /**
      * Removes and returns the item at the front of the queue.
-     * 
+     *
      * @throws RuntimeException If queue is empty
      *
      * @return string
@@ -44,7 +49,7 @@ class Queue
      * Inserts the item at the back of the queue.
      *
      * @param string $item
-     * 
+     *
      * @return void
      */
     public function enqueue(string $item): void
@@ -54,7 +59,7 @@ class Queue
 
     /**
      * Checks if queue is empty.
-     * 
+     *
      * @return boolean
      */
     public function isEmpty(): bool
@@ -64,7 +69,7 @@ class Queue
 
     /**
      * Returns the item at the front of the queue without removing it.
-     * 
+     *
      * @return string
      */
     public function peek(): string
